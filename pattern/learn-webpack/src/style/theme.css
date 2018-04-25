@@ -1,0 +1,17 @@
+body {
+  background: yellow;
+}
+
+.bg {
+  height: 500px;
+}
+
+.bg1 {
+  background: url('../img/1.jpg') no-repeat;
+}
+.box{
+  color: red;
+}
+.bg2 {
+  background: url('../img/4.jpg') no-repeat;
+}
