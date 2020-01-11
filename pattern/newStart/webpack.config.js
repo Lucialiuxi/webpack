@@ -1,6 +1,7 @@
 const path = require("path");
  //把css提取到单独的文件中的插件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //创建多个实例
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
@@ -18,7 +19,7 @@ module.exports = {
             {
                 test:/\.css$/,
                 // use: [
-                //     { 
+                //     {
                 //         loader:"style-loader"
                 //     },
                 //     {
@@ -40,11 +41,12 @@ module.exports = {
     plugins:[
         extractCSS ,
         extractLESS,
+        new HtmlWebpackPlugin(),
     ],
-    // devServer: {
-    //     contentBase: path.join(__dirname, "dist"),
-    //     compress: true,//压缩
-    //     port: 3000,//端口
-    //     open: true,//编译完之后在默认浏览器打开
-    // }
-}
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,//压缩
+        port: 3000,//端口
+        open: true,//编译完之后在默认浏览器打开
+    }
+};
