@@ -18,34 +18,29 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: "./main.js",
+    entry: "./main.jsx",
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname , "./dist"),
     },
+    resolve: {
+        extensions: ['.jsx', '.js', '.less', '.css', '.json',]
+    },
     module: {
         rules: [
             {
-                test: '/\.m?js$/',
+                test: '/\.js[x]?$/',
                 exclude: '/(node_modules|bower_components)/',
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime'],
-                    },
+                        presets: ["@babel/preset-react"],
+                        plugins: ['@babel/transform-runtime'],
+                    }
                 },
             },
             {
                 test:/\.css$/,
-                // use: [
-                //     {
-                //         loader:"style-loader"
-                //     },
-                //     {
-                //         loader:"css-loader",
-                //     }
-                // ]
                 //把css提取到单独的文件中
                 use: extractCSS.extract({
                     fallback: "style-loader",
@@ -61,7 +56,11 @@ module.exports = {
     plugins:[
         extractCSS ,
         extractLESS,
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'lucia',
+            template: "./index.html",
+
+        }),
         new ProgressBarPlugin({
             format: 'build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
             clear: false,
@@ -74,6 +73,12 @@ module.exports = {
         compress: true,//压缩
         port: 3000,//端口
         open: true,//编译完之后在默认浏览器打开
+        // clientLogLevel: "none",
+        hot: true,
     },
     stats: "normal",
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    }
 };
