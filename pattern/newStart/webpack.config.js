@@ -1,13 +1,14 @@
 const path = require("path");
  //把css提取到单独的文件中的插件
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const chalk = require('chalk');
+const merge = require('webpack-merge');
 
 //创建多个实例
-// const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
-// const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
+const extractLESS = new ExtractTextPlugin('stylesheets/[name].css');
+const extractCSS = new ExtractTextPlugin('stylesheets/[name].css');
 
 // 编辑进度条
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -19,7 +20,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: { index: "./src/index.jsx" },
+    entry: "./src/index.jsx",
     output: {
         filename: "[name].js",
         path: path.join(__dirname , "./dist"),
@@ -58,10 +59,11 @@ module.exports = {
         // extractLESS,
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, "src/index.html"),
-            filename: 'index.html',
-            chunks: ['index'],
+            template: path.join(__dirname, "src/index.html"),//引入的HTML文件的模板路径
+            filename: 'index.html',// 将生成的HTML写入到该文件中。默认写入到index.html中。
+            // chunks: ['index'], //多入口的时候 对应entry属性名
             inject: true,
+            hash: true, // 添加一个唯一的hash给所有已经include的scripts和css文件。对清除缓存十分有用
             minify: {
                 html5: true,
                 collapseWhitespace: true,
