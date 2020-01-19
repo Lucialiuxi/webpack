@@ -19,20 +19,25 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: { index: "./src/index.js" },
+    entry: { index: "./src/index.jsx" },
     output: {
         filename: "[name].js",
         path: path.join(__dirname , "./dist"),
     },
-    // resolve: {
-    //     extensions: ['.jsx', '.js', '.less', '.css', '.json',]
-    // },
+    resolve: {
+        extensions: ['.jsx', '.js', '.less', '.css', '.json',]
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js[x]?$/,
                 exclude: /(node_modules|bower_components)/,
-                use: "babel-loader",
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [ "@babel/preset-env", "@babel/preset-react" ],
+                    }
+                },
             },
             // {
             //     test:/\.css$/,
@@ -81,9 +86,9 @@ module.exports = {
         // clientLogLevel: "none",
         hot: true,
     },
-    // stats: "normal",
-    // watchOptions: {
-    //     aggregateTimeout: 300,
-    //     poll: 1000
-    // }
+    stats: "normal",
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    }
 };
