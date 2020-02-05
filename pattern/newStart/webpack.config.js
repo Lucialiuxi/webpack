@@ -59,6 +59,7 @@ module.exports = {
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
+            title: 'webpack列子',
             template: path.join(__dirname, "src/index.html"),//引入的HTML文件的模板路径
             filename: 'index.html',// 将生成的HTML写入到该文件中。默认写入到index.html中。
             // chunks: ['index'], //多入口的时候 对应entry属性名
