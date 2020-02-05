@@ -1,14 +1,11 @@
 const path = require("path");
- //把css提取到单独的文件中的插件
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");// 从js中分离css 和extract-text-webpack-plugin功能类似，webpack4开始使用mini-css-extract-plugin
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const chalk = require('chalk');
 const merge = require('webpack-merge');
+const devMode = process.env.NODE_ENV !== 'production';
 
-//创建多个实例
-const extractLESS = new ExtractTextPlugin('stylesheets/[name].css');
-const extractCSS = new ExtractTextPlugin('stylesheets/[name].css');
 
 // 编辑进度条
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -40,23 +37,17 @@ module.exports = {
                     }
                 },
             },
-            // {
-            //     test:/\.css$/,
-            //     //把css提取到单独的文件中
-            //     use: extractCSS.extract({
-            //         fallback: "style-loader",
-            //         use: "css-loader"
-            //     })
-            // },
-            // {
-            //   test: /\.less$/,
-            //   use: extractLESS.extract([ 'css-loader', 'less-loader' ])
-            // }
+            {
+              test: /\.(le|sa|sc|c)ss$/,
+              use: [
+                devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                'css-loader',
+                "less-loader"
+              ],
+            }
         ]
     },
     plugins:[
-        // extractCSS ,
-        // extractLESS,
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "src/index.html"),//引入的HTML文件的模板路径
@@ -79,6 +70,10 @@ module.exports = {
             width: 60,
         }),
         // new DashBoardPlugin(dashboard.setData),
+        new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+          })
     ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),

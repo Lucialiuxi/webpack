@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Trying from './one';
 
 export default class App extends React.Component {
     render() {
-        return <div>测试</div>
+        return <Trying/>
     }
 }
 
