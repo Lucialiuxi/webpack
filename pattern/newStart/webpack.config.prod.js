@@ -50,7 +50,9 @@ module.exports = {
                 use: [
                     {
                         loader: "file-loader",
-                        options: {},
+                        options: {
+                            name: 'img/[name][hash:8].[ext]'
+                        },
                     }
                 ],
             }

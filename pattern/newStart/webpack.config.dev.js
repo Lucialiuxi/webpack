@@ -1,5 +1,6 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");// 从js中分离css 和extract-text-webpack-plugin功能类似，webpack4开始使用mini-css-extract-plugin
+// 从js中分离css 和extract-text-webpack-plugin功能类似，webpack4开始使用mini-css-extract-plugin
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const chalk = require('chalk');
@@ -19,11 +20,14 @@ module.exports = {
     mode: "development",
     entry: "./src/index.jsx",
     output: {
-        filename: "[name].js",
+        filename: "[name][hash:8].js",
         path: path.join(__dirname , "./dist"),
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.less', '.css', '.json',]
+        extensions: ['.jsx', '.js', '.less', '.css', '.json',],
+        alias: {
+            '@': require('path').resolve(__dirname, './src')
+        },
     },
     module: {
         rules: [
@@ -50,7 +54,20 @@ module.exports = {
                 use: [
                     {
                         loader: "file-loader",
-                        options: {},
+                        options: {
+                            name: 'img/[name][hash:8].[ext]'
+                        },
+                    }
+                ],
+            },
+            {
+                test: /\.(wof|wof2|eot|ttf|otf)$/, // 字体图标
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            outputPath: 'fonts/'
+                        }
                     }
                 ],
             }
