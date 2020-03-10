@@ -16,7 +16,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // const dashboard = new DashBoard();
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: "./src/index.jsx",
     output: {
         filename: "[name].js",
@@ -38,12 +38,12 @@ module.exports = {
                 },
             },
             {
-              test: /\.(le|sa|sc|c)ss$/,
-              use: [
-                devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                'css-loader',
-                "less-loader"
-              ],
+                test: /\.(le|sa|sc|c)ss$/,
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    "less-loader"
+                ],
             },
             {
                 test: /\.(png|jpg|jpeg|gif)/,
@@ -81,21 +81,21 @@ module.exports = {
         }),
         // new DashBoardPlugin(dashboard.setData),
         new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
-          })
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
     ],
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        // compress: true,//压缩
-        port: 3000,//端口
-        open: true,//编译完之后在默认浏览器打开
-        // clientLogLevel: "none",
-        hot: true,
-    },
+    // devServer: {
+    //     contentBase: path.join(__dirname, "dist"),
+    //     // compress: true,//压缩
+    //     port: 3000,//端口
+    //     open: true,//编译完之后在默认浏览器打开
+    //     // clientLogLevel: "none",
+    //     hot: true,
+    // },
     stats: "normal",
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-    }
+    // watchOptions: {
+    //     aggregateTimeout: 300,
+    //     poll: 1000
+    // }
 };
