@@ -23,7 +23,10 @@ module.exports = {
         path: path.join(__dirname , "./dist"),
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.less', '.css', '.json',]
+        extensions: ['.jsx', '.js', '.less', '.css', '.json'],
+        alias: {
+            '@': path.resolve(__dirname, 'src')
+        },
     },
     module: {
         rules: [
@@ -53,6 +56,17 @@ module.exports = {
                         options: {
                             name: 'img/[name][hash:8].[ext]'
                         },
+                    }
+                ],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/, // 字体图标
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            outputPath: 'fonts/'
+                        }
                     }
                 ],
             }

@@ -26,7 +26,7 @@ module.exports = {
     resolve: {
         extensions: ['.jsx', '.js', '.less', '.css', '.json',],
         alias: {
-            '@': require('path').resolve(__dirname, './src')
+            '@': path.resolve(__dirname, 'src')
         },
     },
     module: {
@@ -36,9 +36,6 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [ "@babel/preset-env", "@babel/preset-react" ],
-                    }
                 },
             },
             {
