@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Trying from './one';
+import Trying from './one/index';
 import './asset/iconfont/iconfont.css';
 
 export default class App extends React.Component {

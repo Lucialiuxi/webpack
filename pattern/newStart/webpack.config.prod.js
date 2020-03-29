@@ -17,7 +17,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: "production",
-    entry: "./src/index.jsx",
+    entry: "./src/index.tsx",
     output: {
         filename: "[name].js",
         path: path.join(__dirname , "./dist"),

@@ -18,19 +18,26 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: "./src/index.jsx",
+    entry: "./src/index.tsx",
     output: {
         filename: "[name][hash:8].js",
         path: path.join(__dirname , "./dist"),
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.less', '.css', '.json',],
+        extensions: ['.tsx', '.ts','.jsx', '.js', '.less', '.css', '.json',],
         alias: {
             '@': path.resolve(__dirname, 'src')
         },
     },
     module: {
         rules: [
+            {
+                test: /\.ts[x]?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "ts-loader",
+                },
+            },
             {
                 test: /\.js[x]?$/,
                 exclude: /(node_modules|bower_components)/,
