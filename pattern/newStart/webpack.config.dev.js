@@ -113,6 +113,8 @@ module.exports = {
         open: true,//编译完之后在默认浏览器打开
         // clientLogLevel: "none",
         hot: true,
+        inline: true,
+        watchContentBase: true,
     },
     stats: "normal",
     watch: true, //启用watch模式
