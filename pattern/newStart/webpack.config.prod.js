@@ -23,7 +23,7 @@ module.exports = {
         path: path.join(__dirname , "./dist"),
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.less', '.css', '.json'],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.less', '.css', '.json'],
         alias: {
             '@': path.resolve(__dirname, 'src')
         },
@@ -31,13 +31,10 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js[x]?$/,
+                test: /\.ts[x]?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: [ "@babel/preset-env", "@babel/preset-react" ],
-                    }
+                    loader: "ts-loader",
                 },
             },
             {
@@ -101,17 +98,5 @@ module.exports = {
             chunkFilename: "[id].css"
         })
     ],
-    // devServer: {
-    //     contentBase: path.join(__dirname, "dist"),
-    //     // compress: true,//压缩
-    //     port: 3000,//端口
-    //     open: true,//编译完之后在默认浏览器打开
-    //     // clientLogLevel: "none",
-    //     hot: true,
-    // },
     stats: "normal",
-    // watchOptions: {
-    //     aggregateTimeout: 300,
-    //     poll: 1000
-    // }
 };
