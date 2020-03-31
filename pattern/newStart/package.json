@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.jsx",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js --env.mode=development",
-    "build": "webpack --config webpack.config.prod.js --env.mode=production"
+    "dev": "webpack-dev-server --config ./config/dev.js --env.mode=development",
+    "build": "webpack --config ./config/prod.js --env.mode=production"
   },
   "author": "test",
   "license": "ISC",
