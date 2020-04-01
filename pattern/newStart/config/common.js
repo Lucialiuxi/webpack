@@ -58,14 +58,14 @@ module.exports = {
             // chunks: ['index'], //多入口的时候 对应entry属性名
             inject: true,
             hash: true, // 添加一个唯一的hash给所有已经include的scripts和css文件。对清除缓存十分有用
-            minify: {
-                html5: true,
-                collapseWhitespace: true,
-                preserveLineBreaks: false,
-                minifyCSS: true,
-                minifyJS: true,
-                removeComments: false,
-            }
+            // minify: {
+            //     html5: true,
+            //     collapseWhitespace: true,
+            //     preserveLineBreaks: false,
+            //     minifyCSS: true,
+            //     minifyJS: true,
+            //     removeComments: false,
+            // }
         }),
         new ProgressBarPlugin({
             format: 'build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',

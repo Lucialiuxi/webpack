@@ -21,6 +21,7 @@ module.exports = merge(common, {
     plugins:[
         new webpack.HotModuleReplacementPlugin(),
     ],
+    devtool: 'cheap-module-source-map',
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         // compress: true,//压缩
