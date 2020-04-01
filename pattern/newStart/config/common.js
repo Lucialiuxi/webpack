@@ -4,12 +4,12 @@ const chalk = require('chalk');
 
 // 编辑进度条
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-console.log(path.join(__dirname, "../src/index.html"))
+
 module.exports = {
-    entry: "../src/index.tsx",
+    entry: "./src/index.tsx",
     output: {
         filename: "[name].js",
-        path: path.join(__dirname , "./dist"),
+        path: path.join(__dirname , "../dist"),
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.less', '.css', '.json'],

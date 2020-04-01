@@ -7,7 +7,7 @@ import './index.less';
 export default class Trying extends React.Component {
     render() {
         return <Carousel autoplay={false}>
-                    <div>
+                    <div>111111
                         <span className="icon iconfont icon-guanbi"/>
                     </div>
                 {/*<div><img src={img} alt=''/></div>*/}
