@@ -25,7 +25,7 @@ module.exports = merge(common, {
         contentBase: path.join(__dirname, "dist"),
         // compress: true,//压缩
         port: 3000,//端口
-        open: true,//编译完之后在默认浏览器打开
+        // open: true,//编译完之后在默认浏览器打开
         // clientLogLevel: "none",
         hot: true,
         inline: true,

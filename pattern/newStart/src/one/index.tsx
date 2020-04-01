@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel } from "antd";
+import { Carousel } from 'antd';
 // import img from '@/asset/image/1.jpeg';
 import "antd/dist/antd.css";
 import './index.less';
